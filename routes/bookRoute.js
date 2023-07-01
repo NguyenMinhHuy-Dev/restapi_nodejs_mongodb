@@ -1,3 +1,4 @@
+const { Router } = require("express");
 const bookController = require("../controllers/bookController");
 
 const router = require("express").Router();
@@ -13,5 +14,8 @@ router.get("/:id", bookController.getABookById);
 
 // UPDATE A BOOK BY ID
 router.put("/:id", bookController.updateABookById);
+
+// DELETE A BOOK BY ID
+router.delete("/:id", bookController.deleteABookById);
 
 module.exports = router;

@@ -14,4 +14,7 @@ router.get("/:id", authorController.getAnAuthorById);
 // UPDATE AN AUTHOR BY ID
 router.put("/:id", authorController.updateAnAuthorById);
 
+// DELETE AN AUTHOR BY ID
+router.delete("/:id", authorController.deleteAnAuthorById);
+
 module.exports = router;

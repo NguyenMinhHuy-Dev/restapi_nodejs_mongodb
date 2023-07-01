@@ -50,6 +50,19 @@ const authorController = {
         catch (err) {
             res.status(500).json(err);
         }
+    },
+
+    // DELETE AN AUTHOR BY ID
+    // MongoDB Method: findByIdAnd
+    deleteAnAuthorById: async (req, res) => {
+        try {
+            await Book.deleteMany({ author: req.params.id });
+            await Author.findByIdAndDelete(req.params.id);
+            res.status(200).json("⚡️[Notification]: Delete successful");
+        }
+        catch (err) {
+            res.status(500).json(err);
+        }
     }
 };
 

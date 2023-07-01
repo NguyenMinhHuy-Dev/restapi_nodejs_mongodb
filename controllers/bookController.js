@@ -54,6 +54,23 @@ const bookController = {
         catch (err) {
             res.status(500).json(err);
         }
+    },
+
+    // DELETE A BOOK BY ID
+    // MongoDB Method: updateMany - findById - deleteOne
+    deleteABookById: async (req, res) => {
+        try {
+            await Author.updateMany(
+                { books: req.params.id }, 
+                { $pull: { books: req.params.id } 
+            });
+            const book = await Book.findById(req.params.id);
+            await Book.deleteOne({ _id: book._id });
+            res.status(200).json("⚡️[Notification]: Delete successful");
+        }
+        catch (err) {
+            res.status(500).json(err);
+        }
     }
 };
 
