@@ -6,3 +6,8 @@ In addition, deploy to Vercel.
 .Technologies:
   + NodeJS, ExpressJS, MongoDB, dotenv, cors.
   + nodemon.
+
+# Demo
+* Get all authors: <a href="https://restapi-nodejs-mongodb.vercel.app/v1/author">https://restapi-nodejs-mongodb.vercel.app/v1/author</a>
+* Get author by id: https://restapi-nodejs-mongodb.vercel.app/v1/author/649fd421627201caf746582f
+* 
