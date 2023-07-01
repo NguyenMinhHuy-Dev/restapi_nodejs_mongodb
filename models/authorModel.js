@@ -5,8 +5,15 @@ const authorSchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    middleName: {
+        type: String
+    },
     firstName: {
         type: String,
+        require: true
+    },
+    year: {
+        type: Number,
         require: true
     },
     books: [

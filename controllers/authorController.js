@@ -1,11 +1,56 @@
-const Author = require("../models/author"); 
-const Book = require("../models/book"); 
+const Author = require("../models/authorModel"); 
+const Book = require("../models/bookModel"); 
 
 const authorController = {
     // ADD AUTHOR
+    // MongoDB Method: save
     addAuthor: async (req, res) => {
-        res.status(200).json(req.body);
+        try {
+            const newAuthor = new Author(req.body);
+            const saveAuthor = await newAuthor.save();
+
+            res.status(200).json(saveAuthor);
+        }
+        catch (err) {
+            res.status(500).json(err);
+        }
     },
+
+    // GET ALL AUTHORS
+    // MongoDB Method: find
+    getAllAuthor: async (req, res) => {
+        try {  
+            const authors = await Author.find();
+            res.status(200).json(authors);
+        }
+        catch (err) {
+            res.status(500).json(err);
+        }
+    },
+
+    // GET AN AUTHOR BY ID
+    // MongoDB Method: findById - populate
+    getAnAuthorById: async (req, res) => {
+        try {
+            const author = await Author.findById(req.params.id).populate("books");
+            res.status(200).json(author);
+        }
+        catch (err) {
+            res.status(500).json(err);
+        }
+    },
+
+    // UPDATE AN AUTHOR BY ID
+    // MongoDB Method: findByIdAndUpdate
+    updateAnAuthorById: async (req, res) => {
+        try {
+            const author = await Author.findByIdAndUpdate(req.params.id, { $set: req.body });
+            res.status(200).json("⚡️[Notification]: Update successful");
+        }   
+        catch (err) {
+            res.status(500).json(err);
+        }
+    }
 };
 
 module.exports = authorController;
